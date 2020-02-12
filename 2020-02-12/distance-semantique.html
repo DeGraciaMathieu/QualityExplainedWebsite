@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>La distance sémantique | Quality Explained</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="La distance sémantique" />
+<meta name="author" content="Chester How" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="La distance sémantique est défini par l’écart qui existe entre le nom d’une méthode et son code concret." />
+<meta property="og:description" content="La distance sémantique est défini par l’écart qui existe entre le nom d’une méthode et son code concret." />
+<link rel="canonical" href="http://localhost:4000/2020-02-12/distance-semantique" />
+<meta property="og:url" content="http://localhost:4000/2020-02-12/distance-semantique" />
+<meta property="og:site_name" content="Quality Explained" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-02-12T00:00:00+01:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","datePublished":"2020-02-12T00:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020-02-12/distance-semantique"},"url":"http://localhost:4000/2020-02-12/distance-semantique","author":{"@type":"Person","name":"Chester How"},"description":"La distance sémantique est défini par l’écart qui existe entre le nom d’une méthode et son code concret.","headline":"La distance sémantique","dateModified":"2020-02-12T00:00:00+01:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+  <!-- RSS -->
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Quality Explained" />
+
+  <!-- Google Analytics-->
+  
+</head>
+
+
+  <body>
+
+    <nav class="nav">
+  <div class="nav-container">
+    <a href="/">
+      <h2 class="nav-title">Quality Explained</h2>
+    </a>
+    <ul>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+    <main>
+      <div class="post">
+  <div class="post-info">
+    <span>Publié par </span>
+    
+        <a href='https://twitter.com/DeGraciaMathieu'>@degraciamathieu</a>
+    
+
+    
+      <br>
+      <span>le&nbsp;</span><time datetime="2020-02-12 00:00:00 +0100">February 12, 2020</time>
+    
+  </div>
+
+  <h1 class="post-title">La distance sémantique</h1>
+  <div class="post-line"></div>
+
+  <p>La distance sémantique est défini par <strong>l’écart qui existe entre le nom d’une méthode et son code concret.</strong></p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">function</span> <span class="nf">requestHttpTokenValidation</span><span class="p">(</span><span class="nx">Validation</span> <span class="nv">$validation</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$valideable</span> <span class="o">=</span> <span class="nx">DnsTxtTokenValidation</span><span class="o">::</span><span class="na">create</span><span class="p">([</span>
+        <span class="s1">'token'</span> <span class="o">=&gt;</span> <span class="nv">$validation</span><span class="o">-&gt;</span><span class="na">token</span><span class="p">,</span>
+    <span class="p">]);</span>
+
+    <span class="nx">Mail</span><span class="o">::</span><span class="na">to</span><span class="p">(</span><span class="nv">$validation</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="k">new</span> <span class="nx">ValidationEmail</span><span class="p">(</span><span class="nv">$valideable</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="nv">$valideable</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Rien n’indique ici que la création d’une validation implique d’envoyer un mail : <strong>Ce comportement n’est pas explicite.</strong></p>
+
+<p>La définition d’une méthode se doit d’être <strong>clair sur ses intentions</strong>, tout comportement caché est une source d’incomprehension et de surprise que l’on doit éviter.</p>
+
+<p>Une grande distance sémantique est également souvent <strong>révélatrice d’un probleme de conception</strong> et transgresse le principe de responsabilité unique : le fameux <a href="https://fr.wikipedia.org/wiki/Principe_de_responsabilit%C3%A9_unique">S de SOLID</a>.</p>
+
+<hr />
+
+<h1 id="how-to-fix">How to fix</h1>
+
+<p>Dans le cas présent il est important de se poser la question suivante :</p>
+
+<blockquote>
+  <p>Cette préoccupation est-elle suffisament proche pour exister au sein de cette méthode ?</p>
+</blockquote>
+
+<p>Si la réponse est oui : On peut alors chercher à <strong>découpler</strong> ce besoin, en utilisant par exemple un <a href="https://laravel.com/docs/master/events">Event</a>.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">function</span> <span class="nf">requestHttpTokenValidation</span><span class="p">(</span><span class="nx">Validation</span> <span class="nv">$validation</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$valideable</span> <span class="o">=</span> <span class="nx">DnsTxtTokenValidation</span><span class="o">::</span><span class="na">create</span><span class="p">([</span>
+        <span class="s1">'token'</span> <span class="o">=&gt;</span> <span class="nv">$validation</span><span class="o">-&gt;</span><span class="na">token</span><span class="p">,</span>
+    <span class="p">]);</span>
+
+    <span class="nx">Event</span><span class="o">::</span><span class="na">dispatch</span><span class="p">(</span><span class="k">new</span> <span class="nx">ValidationRequested</span><span class="p">(</span><span class="nv">$valideable</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="nv">$valideable</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Au contraire, si la réponse est non, nous sommes face à un couplage temporel, il est conseillé de <strong>refactoriser en profondeur</strong> cette méthode pour en <strong>extraire les differentes préoccupations.</strong></p>
+
+</div>
+
+
+
+<div class="pagination">
+  
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+    </main>
+
+    <footer>
+  <span>
+    &copy; <time datetime="2020-02-12 23:44:42 +0100">2020</time> Chester How. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+  </span>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-02-12T23:44:42+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Quality Explained</title><subtitle>Minimal Jekyll theme for storytellers</subtitle><author><name>Chester How</name><email>chesterhow@gmail.com</email></author><entry><title type="html">La distance sémantique</title><link href="http://localhost:4000/2020-02-12/distance-semantique" rel="alternate" type="text/html" title="La distance sémantique" /><published>2020-02-12T00:00:00+01:00</published><updated>2020-02-12T00:00:00+01:00</updated><id>http://localhost:4000/2020-02-12/distance-semantique</id><content type="html" xml:base="http://localhost:4000/2020-02-12/distance-semantique">&lt;p&gt;La distance sémantique est défini par &lt;strong&gt;l’écart qui existe entre le nom d’une méthode et son code concret.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;requestHttpTokenValidation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Validation&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$validation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$valideable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DnsTxtTokenValidation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'token'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$validation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;Mail&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$validation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ValidationEmail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$valideable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$valideable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Rien n’indique ici que la création d’une validation implique d’envoyer un mail : &lt;strong&gt;Ce comportement n’est pas explicite.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;La définition d’une méthode se doit d’être &lt;strong&gt;clair sur ses intentions&lt;/strong&gt;, tout comportement caché est une source d’incomprehension et de surprise que l’on doit éviter.&lt;/p&gt;
+
+&lt;p&gt;Une grande distance sémantique est également souvent &lt;strong&gt;révélatrice d’un probleme de conception&lt;/strong&gt; et transgresse le principe de responsabilité unique : le fameux &lt;a href=&quot;https://fr.wikipedia.org/wiki/Principe_de_responsabilit%C3%A9_unique&quot;&gt;S de SOLID&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;how-to-fix&quot;&gt;How to fix&lt;/h1&gt;
+
+&lt;p&gt;Dans le cas présent il est important de se poser la question suivante :&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Cette préoccupation est-elle suffisament proche pour exister au sein de cette méthode ?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Si la réponse est oui : On peut alors chercher à &lt;strong&gt;découpler&lt;/strong&gt; ce besoin, en utilisant par exemple un &lt;a href=&quot;https://laravel.com/docs/master/events&quot;&gt;Event&lt;/a&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;requestHttpTokenValidation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Validation&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$validation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$valideable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DnsTxtTokenValidation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'token'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$validation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;Event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dispatch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ValidationRequested&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$valideable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$valideable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Au contraire, si la réponse est non, nous sommes face à un couplage temporel, il est conseillé de &lt;strong&gt;refactoriser en profondeur&lt;/strong&gt; cette méthode pour en &lt;strong&gt;extraire les differentes préoccupations.&lt;/strong&gt;&lt;/p&gt;</content><author><name>Chester How</name><email>chesterhow@gmail.com</email></author><summary type="html">La distance sémantique est défini par l’écart qui existe entre le nom d’une méthode et son code concret.</summary></entry></feed>

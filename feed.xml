@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://quality-explained.fr//feed.xml" rel="self" type="application/atom+xml" /><link href="https://quality-explained.fr//" rel="alternate" type="text/html" /><updated>2020-02-13T00:48:13+01:00</updated><id>https://quality-explained.fr//feed.xml</id><title type="html">Quality Explained</title><subtitle>Qualité web en PHP</subtitle><author><name>De Gracia Mathieu</name></author><entry><title type="html">La distance sémantique</title><link href="https://quality-explained.fr//distance-semantique/" rel="alternate" type="text/html" title="La distance sémantique" /><published>2020-02-12T00:00:00+01:00</published><updated>2020-02-12T00:00:00+01:00</updated><id>https://quality-explained.fr//distance-semantique</id><content type="html" xml:base="https://quality-explained.fr//distance-semantique/">&lt;p&gt;La distance sémantique est définie par &lt;strong&gt;l’écart qui existe entre le nom d’une méthode et son code concret.&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://quality-explained.fr//feed.xml" rel="self" type="application/atom+xml" /><link href="https://quality-explained.fr//" rel="alternate" type="text/html" /><updated>2020-02-13T21:25:11+01:00</updated><id>https://quality-explained.fr//feed.xml</id><title type="html">Quality Explained</title><subtitle>Qualité web en PHP</subtitle><author><name>De Gracia Mathieu</name></author><entry><title type="html">La distance sémantique</title><link href="https://quality-explained.fr//distance-semantique/" rel="alternate" type="text/html" title="La distance sémantique" /><published>2020-02-12T00:00:00+01:00</published><updated>2020-02-12T00:00:00+01:00</updated><id>https://quality-explained.fr//distance-semantique</id><content type="html" xml:base="https://quality-explained.fr//distance-semantique/">&lt;p&gt;La distance sémantique est définie par &lt;strong&gt;l’écart qui existe entre le nom d’une méthode et son code concret.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
 
@@ -15,7 +15,7 @@
 
 &lt;p&gt;Rien n’indique ici que la création d’une validation implique d’envoyer un mail : &lt;strong&gt;Ce comportement n’est pas explicite.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;La définition d’une méthode se doit d’être &lt;strong&gt;clair sur ses intentions&lt;/strong&gt;, tout comportement caché est une source d’incomprehension et de surprise que l’on doit éviter.&lt;/p&gt;
+&lt;p&gt;La définition d’une méthode se doit d’être &lt;strong&gt;claire sur ses intentions&lt;/strong&gt;, tout comportement caché est une source d’incomprehension et de surprise que l’on doit éviter.&lt;/p&gt;
 
 &lt;p&gt;Une grande distance sémantique est également souvent &lt;strong&gt;révélatrice d’un problème de conception&lt;/strong&gt; et transgresse le principe de responsabilité unique : le fameux &lt;a href=&quot;https://fr.wikipedia.org/wiki/Principe_de_responsabilit%C3%A9_unique&quot;&gt;S de SOLID&lt;/a&gt;.&lt;/p&gt;
 
@@ -23,7 +23,7 @@
 
 &lt;h1 id=&quot;how-to-fix&quot;&gt;How to fix&lt;/h1&gt;
 
-&lt;p&gt;Dans le cas présent il est important de se poser la question suivante :&lt;/p&gt;
+&lt;p&gt;Dans le cas présent, il est important de se poser la question suivante :&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Cette préoccupation est-elle suffisament proche pour exister au sein de cette méthode ?&lt;/p&gt;
@@ -44,4 +44,4 @@
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$valideable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Au contraire, si la réponse est non, nous sommes face à un couplage temporel, il est conseillé de &lt;strong&gt;refactoriser en profondeur&lt;/strong&gt; cette méthode pour en &lt;strong&gt;extraire les differentes préoccupations.&lt;/strong&gt;&lt;/p&gt;</content><author><name>De Gracia Mathieu</name></author><summary type="html">La distance sémantique est définie par l’écart qui existe entre le nom d’une méthode et son code concret.</summary></entry></feed>
+&lt;p&gt;Au contraire, si la réponse est non : Nous sommes face à un couplage temporel, il est conseillé de &lt;strong&gt;refactoriser en profondeur&lt;/strong&gt; cette méthode pour en &lt;strong&gt;extraire les différentes préoccupations.&lt;/strong&gt;&lt;/p&gt;</content><author><name>De Gracia Mathieu</name></author><summary type="html">La distance sémantique est définie par l’écart qui existe entre le nom d’une méthode et son code concret.</summary></entry></feed>

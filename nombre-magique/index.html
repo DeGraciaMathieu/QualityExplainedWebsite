@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Nombre magique | Quality Explained</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Nombre magique" />
+<meta name="author" content="De Gracia Mathieu" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Un nombre magique est une valeur, le plus souvent un integer, ayant un sens métier et présent en dur dans votre code." />
+<meta property="og:description" content="Un nombre magique est une valeur, le plus souvent un integer, ayant un sens métier et présent en dur dans votre code." />
+<link rel="canonical" href="https://quality-explained.fr//nombre-magique/" />
+<meta property="og:url" content="https://quality-explained.fr//nombre-magique/" />
+<meta property="og:site_name" content="Quality Explained" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-02-13T00:00:00+01:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","author":{"@type":"Person","name":"De Gracia Mathieu"},"url":"https://quality-explained.fr//nombre-magique/","headline":"Nombre magique","dateModified":"2020-02-13T00:00:00+01:00","datePublished":"2020-02-13T00:00:00+01:00","description":"Un nombre magique est une valeur, le plus souvent un integer, ayant un sens métier et présent en dur dans votre code.","mainEntityOfPage":{"@type":"WebPage","@id":"https://quality-explained.fr//nombre-magique/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap"> 
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+  <!-- RSS -->
+  <link type="application/atom+xml" rel="alternate" href="https://quality-explained.fr//feed.xml" title="Quality Explained" />
+
+  <!-- Google Analytics-->
+  
+</head>
+
+
+  <body>
+
+    <nav class="nav">
+  <div class="nav-container">
+    <a href="/">
+      <h2 class="nav-title">Quality Explained</h2>
+    </a>
+    <span>Appliqué à php & laravel</span>
+    <ul>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+    <main>
+      <div class="post">
+  <div class="post-info">
+    <span>Publié par </span>
+    
+        <a href='https://twitter.com/DeGraciaMathieu'>@degraciamathieu</a>
+    
+
+    
+      <br>
+      <span>le&nbsp;</span><time datetime="2020-02-13 00:00:00 +0100">February 13, 2020</time>
+    
+  </div>
+
+  <h1 class="post-title">Nombre magique</h1>
+  <div class="post-line"></div>
+
+  <p>Un nombre magique est une valeur, le plus souvent un integer, ayant un sens métier et présent en dur dans votre code.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">setOrder</span><span class="p">(</span><span class="nx">Order</span> <span class="nv">$order</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$order</span><span class="o">-&gt;</span><span class="na">state</span> <span class="o">===</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">order</span> <span class="o">=</span> <span class="nv">$order</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>La lecture d’<strong>un nombre magique n’est pas instinctivement explicite</strong>, elle nécessite des connaissances particulières ou un effort supplémentaire pour en saisir le sens.</p>
+
+<p>Cette <strong>incertitude est délétère</strong> pour la lisibilité et la simplicité de votre code.</p>
+
+<p>La démultiplication d’un même nombre magique au sein d’une application est également <strong>problématique pour sa maintenabilité</strong>.</p>
+
+<p>Le moindre changement de valeur se doit ainsi d’être répercuté sur l’intégralité de l’application afin d’en prévenir des effets de bord.</p>
+
+<p>Un nombre magique aura donc tendance à rendre votre code <strong>plus cryptique et moins maintenable</strong> sur le long terme ou pour un nouveau développeur intégrant le projet.</p>
+
+<hr />
+
+<h1 id="how-to-fix">How to fix</h1>
+
+<p>L’idée générale est d’<strong>externaliser et d’expliciter</strong> ces nombres magiques.</p>
+
+<p>Si le nombre magique est statique qu’importe le contexte d’utilisation alors <strong>l’écriture de constantes</strong>, ou d’une <a href="https://github.com/BenSampo/laravel-enum">class Enum</a>, peut s’avérer judicieux pour encapsuler et <strong>rendre transposable ces valeurs métiers</strong>.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">setOrder</span><span class="p">(</span><span class="nx">Order</span> <span class="nv">$order</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$order</span><span class="o">-&gt;</span><span class="na">state</span> <span class="o">===</span> <span class="nx">OrderStateConstants</span><span class="o">::</span><span class="na">BLOCKED</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">UnexpectedStateException</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">order</span> <span class="o">=</span> <span class="nv">$order</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Dans le cas contraire un <a href="https://laravel.com/docs/master/configuration">fichier de configuration</a> sera probablement plus pertinent.</p>
+
+</div>
+
+
+
+<div class="pagination">
+  
+  
+    <a href="/distance-semantique/" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+    </main>
+
+    <footer>
+  <span>
+    &copy; <time datetime="2020-02-15 11:28:57 +0100">2020</time> De Gracia Mathieu. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+  </span>
+</footer>
+
+  </body>
+</html>

@@ -98,7 +98,7 @@
     <span class="c1">//</span>
 <span class="p">}</span></code></pre></figure>
 
-<p>Cette variable <code class="highlighter-rouge">$temporary</code> est certes pratique mais sa présence au sein de notre méthode <code class="highlighter-rouge">make</code> est une <strong>préoccupation supplémentaire</strong> l’éloignant ainsi du <a href="https://fr.wikipedia.org/wiki/Principe_de_responsabilit%C3%A9_unique">principe de responsabilité unique</a>.</p>
+<p>Cette variable <code class="highlighter-rouge">$temporary</code> est certes pratique, mais sa présence au sein de notre méthode <code class="highlighter-rouge">make</code> est une <strong>préoccupation supplémentaire</strong>, l’éloignant ainsi du <a href="https://fr.wikipedia.org/wiki/Principe_de_responsabilit%C3%A9_unique">principe de responsabilité unique</a>.</p>
 
 <hr />
 
@@ -109,7 +109,7 @@
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="nx">File</span><span class="o">::</span><span class="na">make</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
 <span class="nx">File</span><span class="o">::</span><span class="na">makeTemporary</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span></code></pre></figure>
 
-<p>Si la refactorisation est trop lourde à implémenter il est toujours possible de <strong>mitiger l’incompréhension</strong> que provoque un flag en le nommant intelligemment à travers une variable :</p>
+<p>Si la refactorisation est trop lourde à implémenter, il est toujours possible de <strong>mitiger l’incompréhension</strong> que provoque un flag en le nommant intelligemment à travers une variable :</p>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="nx">File</span><span class="o">::</span><span class="na">make</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$temporary</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span></code></pre></figure>
 
@@ -130,7 +130,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2020-04-09 22:23:37 +0200">2020</time> De Gracia Mathieu. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+    &copy; <time datetime="2020-04-09 23:14:02 +0200">2020</time> De Gracia Mathieu. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
   </span>
 </footer>
 
